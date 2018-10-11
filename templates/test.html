@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+    <style>
+        .c1 {
+            background-color: darkgray;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+<input type="button" id="btn" value="获取验证码" />
+
+
+<script type="text/javascript" src="/static/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+    $("#btn").click(function () {
+        var count = 60;
+        var iterval = setInterval(function () {
+            count--;
+            if(count==0){
+                clearInterval(iterval);
+                $("#btn").attr("disabled",false).val("获取验证码").removeClass("c1");
+            }else{
+                if($("#btn").attr("disabled")){
+                    $("#btn").val(count);
+                }else{
+                    $("#btn").attr("disabled",true).val(count).addClass("c1");
+                }
+            }
+        },1000);
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        a{
+            text-decoration:none;
+        }
+        input[type=button]{
+            cursor: pointer;
+        }
+        .hide{
+            display: none;
+        }
+        .left{
+            left: 0;
+        }
+        .right{
+            right: 0;
+        }
+        .head-band{
+            width: 100%;
+            height: 44px;
+            background-color: #2459a2;
+            position: fixed;
+            z-index: 1000;
+        }
+        .head-band .head-content{
+            margin: 0 auto;
+            width: 1014px;
+            height: 44px;
+            background-color: #2459a2;
+            line-height: 44px;
+            position: relative;
+        }
+        .head-content .login-nav {
+            position: absolute;
+            right: 151px;
+            font-size: 12px;
+        }
+        .head-content .dig-logo{
+            width: 121px;
+            height: 23px;
+            background:url("/static/imgs/logo.png") no-repeat 1px 1px;
+            float: left;
+            margin-top: 11px;
+        }
+        .head-content .action-menu,.login-nav{
+            float: left;
+            margin-left: 20px;
+            font-size: 12px;
+        }
+        .login-nav .ico-dynamic {
+            background: url("/static/imgs/icon-dynamic.png") no-repeat center center;
+            display: inline-block;
+            width: 14px;
+            height: 12px;
+            position: relative;
+            top: 2px;
+            margin-right: 1px;
+        }
+        .login-nav .ico-notice {
+            background: url("/static/imgs/icon-notice.png") no-repeat center center;
+            display: inline-block;
+            width: 12px;
+            height: 14px;
+            position: relative;
+            top: 2px;
+            margin-right: 1px;
+        }
+        .head-content a.tb{
+            display: inline-block;
+            height: 44px;
+            padding: 0 10px;
+            color:whitesmoke;
+        }
+        .action-menu a.active{
+            background-color: #204982;
+            color:#fff;
+        }
+        .head-content .key-sear{
+            float: right;
+            margin-top: 6px;
+        }
+        .key-sear input{
+            height: 25px;
+            width: 91px;
+            float: left;
+            color:  #333;
+            border:1px solid #e0e0e0;
+            padding:2px 2px 2px 5px;
+        }
+        .key-sear a.i{
+            display: inline-block;
+            width: 30px;
+            height: 29px;
+            background-color: white;
+            border:1px solid #e0e0e0;
+            float: right;
+        }
+        .key-sear span{
+            background: url("/static/imgs/icon.png") no-repeat 0 -197px;
+            display: block;
+            height: 12px;
+            width: 11px;
+            margin-left: 11px;
+            margin-top: 9px;
+        }
+        .head-content .action-nav{
+            float: right;
+            font-size: 12px;
+        }
+        .action-nav a {
+            color: #fff;
+            margin: 0 5px;
+            display: inline-block;
+            height: 44px;
+            padding: 0 20px;
+        }
+        .head-content .login-nav{
+            float: right;
+        }
+        .login-nav a{
+            display: inline-block;
+        }
+        .action-menu a:hover,.login-nav a:hover{
+            background-color: #336699;
+        }
+        .userPro-Box{
+            position: relative;
+        }
+        .userPro-Box img {
+            margin-bottom: 8px;
+            vertical-align: bottom;
+        }
+
+        .shadow{
+            opacity: 0.75;
+            background: #666;
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 1000;
+        }
+        .modal{
+            position: fixed;
+            height: 400px;
+            width: 700px;
+            top:50%;
+            right: 50%;
+            margin-right: -400px;
+            margin-top: -187px;
+            background-color: white;
+            z-index: 2000;
+            border-radius: 10px;
+        }
+        .modal-content .login-band,.modal-content .register-band{
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            border-radius: 5px;
+        }
+        .login-content,.register-content{
+            width: 80%;
+            position: absolute;
+            margin-bottom: 0px;
+        }
+        .login-content{
+            padding-left: 50px;
+
+        }
+        .register-content{
+            padding-right: 50px;
+            text-align: right;
+
+        }
+        span.tip{
+            display: inline-block;
+            text-align: left;
+            height: 8px;
+            width: 208px;
+            font-size: 8px;
+            color:red;
+        }
+        span.hide{
+            display: none;
+        }
+        .login-band .login-head,.register-band .register-head{
+            background: #e7ecf2;
+            height: 30px;
+            line-height: 30px;
+            font-size: 14px;
+            padding: 0 10px;
+            color: #abb6d2;
+            font-weight: bold;
+            border-radius: inherit;
+        }
+
+        .tab-box,.tab-box-register{
+            height: 60px;
+            width: 350px;
+            line-height: 60px;
+            text-align: center;
+            color: #abb6d2;
+        }
+        .tab-box .left-box{
+            margin-right: 10px;
+        }
+        .tab-box .right-box{
+            margin-left: 10px;
+        }
+        .tab-box .active ,.tab-box-register .active {
+            color: #2559a4 !important;
+            cursor: default;
+        }
+        select.region{
+            margin-top: 2px;
+            height: 19px;
+            width: 210px;
+        }
+        input.tb{
+            width: 196px;
+            padding: 6px;
+            border: 1px solid #CDDDEF;
+            font-weight: bold;
+        }
+        .register-content input.register-mobile{
+            width: 115px;
+            padding: 6px;
+            border: 1px solid #CDDDEF;
+            font-weight: bold;
+        }
+        .login-content .help-band{
+            margin-top: 10px;
+        }
+        .help-band {
+            font-size: 12px;
+        }
+        .forgot-pwd a{
+            color: #2559a4;
+        }
+        .help-band .remained-login{
+            float: left;
+        }
+        .help-band .forgot-pwd{
+            float: right;
+            margin-right: 60px;
+        }
+        input.login-btn-in,input.btn-reg{
+            height: 31px;
+            width: 95px;
+            background-color: #2459a2;
+            line-height: 31px;
+            border-radius: 5px;
+            color: white;
+            margin-top: 10px;
+        }
+        .register-content .verification-btn{
+            height: 31px;
+            width: 75px;
+            line-height: 31px;
+            border-radius: 5px;
+            font-size: 11px;
+            color: white;
+        }
+        .register-content input.c1{
+            background-color: #2459a2;
+        }
+        .register-content input.c2{
+            background-color: darkgray;
+        }
+        .register-content .register-content-info{
+            width: 80%;
+            position: absolute;
+            margin-bottom: 0px;
+            padding-right: 50px;
+            text-align: right;
+        }
+        .register-head .close-dialog-btn{
+            float: right;
+            background: url("/static/imgs/tip.png") no-repeat 0 -499px;
+            width: 15px;
+            height: 15px;
+            display: block;
+            margin-top: 7px;
+        }
+        .register-content .btn-register{
+            margin-right: 115px;
+        }
+        .register-content-info .help-band{
+            font-size: 11px;
+            margin-top: 10px;
+            margin-left: 30px;
+        }
+
+        .dig-band{
+            top: 44px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: darkgray;
+            overflow: scroll;
+        }
+        .dig-band .dig-content {
+            position: relative;
+            height: 2000px;
+            width: 1014px;
+            margin:0 auto;
+            background-color: white;
+        }
+        .dig-content .info-left{
+            width: 630px;
+            margin-left: 20px;
+            float: left;
+        }
+        .dig-content .info-right{
+            float: right;
+        }
+        .dig-recommend span.zan{
+            position: relative;
+        }
+        .userDropDown{
+            height: 100px;
+            width: 200px;
+            position: absolute;
+            top:44px;
+            right: 38px;
+            text-align: center;
+            display: none;
+        }
+        .userDropDown a{
+            display: block;
+            height: 25px;
+            width: 88px;
+            border: 1px whitesmoke solid;
+            font-size: small;
+            line-height: 25px;
+
+        }
+        .dig-content .nav-top-area{
+            height: 43px;
+            line-height: 43px;
+        }
+        .dig-content .nav-top-area .child-nav{
+            float: left;
+            width: 200px;
+        }
+        .dig-content .nav-top-area .sort-nva{
+            float: left;
+            width: 200px;
+            margin-left: 120px;
+            font-size: 12px;
+        }
+        .dig-content .nav-top-area .sort-nva a{
+            padding: 0 8px;
+        }
+        .dig-content .nav-top-area .sort-nva a.active{
+            color:darkgray;
+        }
+        .dig-content .child-nav a{
+            display: inline-block;
+            width: 60px;
+            height: 26px;
+            line-height: 26px;
+            margin-top: 3px;
+            margin-bottom: 13px;
+            color: #369;
+            font-size: 12px;
+            font-weight: 700;
+            text-align: center;
+        }
+        .nav-top-area a.publish-btn {
+            background-color: #84a42b;
+            border: 1px solid #8aab30;
+            color: #fff;
+            display: inline-block;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            width: 100px;
+            float: right;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .publish-btn .n1{
+            display: inline-block;
+            width: 11px;
+            height: 12px;
+            background: url("/static/imgs/icon.png") no-repeat 0 -184px;
+        }
+        .dig-content a.best-hot{
+            background: url("/static/imgs/tip.png") no-repeat 0 -299px;
+            color: #333;
+            margin-left: 3px;
+
+        }
+
+        .dig-content .content-list{
+            width: 100%;
+            height: 100%;
+        }
+        .content-list .item{
+            border-bottom:1px solid #dce7f4;
+            position: relative;
+            padding-top: 5px;
+            padding-bottom: 10px;
+        }
+        .item-left{
+            float: left;
+            width: 80%;
+        }
+        .item-left .part1 a{
+            padding-left: 0;
+            margin-left: 0;
+            font-size: 14px;
+            color: #369;
+            font-weight: 700;
+        }
+        .item-left .area-summary{
+            color:#787878;
+            font-size: 12px;
+            font-family: Arial,Helvetica,sans-serif;
+        }
+        .part2{
+            margin-top: 5px;
+        }
+        .part2 a{
+            display: inline-block;
+            margin-right: 5px;
+            height: 20px;
+        }
+        .part2 span{
+            vertical-align: -3px;
+            display: inline-block;
+            height: 18px;
+            width: 18px;
+            margin-right: 3px;
+        }
+        a.dig-recommend ,a.dig-discuss{
+            width: 54px;
+        }
+        a.dig-collect{
+            width: 69px;
+        }
+        a.dig-recommend span.icon{
+            background: url("/static/imgs/icon_18_118.png") no-repeat 0 -40px;
+        }
+        a.dig-discuss span{
+            background: url("/static/imgs/icon_18_118.png") no-repeat 0 -60px;
+        }
+        a.dig-collect span{
+            background: url("/static/imgs/icon_18_118.png") no-repeat 0 -140px;
+        }
+        .part2 .user-a img {
+            width: 15px;
+            height: 15px;
+            padding: 1px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            vertical-align: -5px;
+        }
+        .part2 b{
+            color: #99aecb;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        .item-right{
+            float: right;
+        }
+        .item-right img{
+            width: 50px;
+            height: 50px;
+        }
+
+        ul,li{
+            padding:0;
+            margin:0;
+            list-style:none
+        }
+        .info-left .pager-area{
+            margin-top: 20px;
+            float: left;
+        }
+        .info-left .pager-area ul li{
+            display: inline-block;
+
+        }
+        .pager-area a{
+            display: inline-block;
+            color: #369;
+            height: 34px;
+            line-height: 34px;
+            text-align: center;
+            width: 34px;
+            border: 1px solid #e1e1e1;
+            border-radius: 5px;
+        }
+        .pager-area a:hover{
+            background-color: #2459a2;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+<div class="head-band">
+    <div class="head-content">
+        <a class="dig-logo" href="#"></a>
+        <div class="action-menu">
+            <a class="tb active" href="#">全部</a>
+            <a class="tb" href="#">42区</a>
+            <a class="tb" href="#">段子</a>
+            <a class="tb" href="#">图片</a>
+            <a class="tb" href="#">挨踢1024</a>
+        </div>
+        <div class="key-sear">
+            <form id="search-fm" action="#" method="post">
+                <input id="search_text" type="text" name="search_text">
+                <a id="searchBtn_2"  class="i" name="searchBtn_2">
+                    <span class="ico"></span>
+                </a>
+            </form>
+        </div>
+        <div class="action-nav">
+            <a class="login-btn-a">注册</a>
+            <a class="login-btn-a">登录</a>
+        </div>
+        <div class="login-nav hide">
+            <a class="tb">
+                <div class="ico-dynamic" title="动态"></div>
+                <span>动态</span>
+            </a>
+            <a class="tb">
+                <div class="ico-notice" title="消息"></div>
+                <span>通知</span>
+            </a>
+            <a class="tb userPro-Box">
+                <img src="/static/imgs/image30.png">
+                <span class="u-nick" id="userProNick"></span>
+                <em></em>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="dig-band">
+    <div class="dig-content">
+        <div class="info-left">
+            <div class="nav-top-area">
+                <div class="child-nav">
+                    <a class="best-hot">最热</a>
+                    <a>发现</a>
+                    <a>人类发布</a>
+                </div>
+                <div class="sort-nva">
+                    <a class="active">及时排序</a>
+                    <a>24小时</a>
+                    <a>3天</a>
+                </div>
+                <a class="publish-btn">
+                    <span class="icon n1"></span>
+                    <span class="n2">发布</span>
+                </a>
+            </div>
+
+        <div class="yellow-comment-msg-box"></div>
+        <div class="content-list" id="content-list">
+
+             <div class="item">
+                <div class="item-left">
+                    <div class="part1">
+                        <a href="#">印尼中苏拉威西省强震及海啸已造成４８人死亡
+                        </a>
+                    </div>
+                    <div class="area-summary"><span class="summary">
+                        印度尼西亚抗灾署２９日说，中苏拉威西省２８日下午发生的强烈地震及引发的海啸已经造成４８人死亡、数百人受伤，数千座房屋及一些医院、购物中心、酒店、桥梁等建筑物在地震中损毁。
+                    </span></div>
+                    <div class="part2">
+                        <a class="dig-recommend">
+                            <span class="zan icon"></span>
+                            <b>2</b>
+                        </a>
+                        <a class="dig-discuss">
+                            <span class="icon"></span>
+                            <b>0</b>
+                        </a>
+                        <a class="dig-collect">
+                            <span class="icon"></span>
+                            <b>私藏</b>
+                        </a>
+                        <a class="user-a">
+                            <img src="/static/imgs/CHOUTI_55D2EBBB039948AB8AEF9721F300AFD2_W48H48=32x32.jpg">
+                            <b>新华社国际咨询</b>
+                        </a>
+                        <span class="time-info"></span>
+                    </div>
+                </div>
+                <div class="item-right">
+                    <img src="/static/imgs/18D7A625DB5E4D9B8977F5B64274FADE_W600H600=C120x120.jpg">
+                </div>
+                 <div style="clear: both"></div>
+            </div>
+            <div class="item">
+                <div class="item-left">
+                    <div class="part1">
+                        <a href="#">印尼中苏拉威西省强震及海啸已造成４８人死亡
+                        </a>
+                    </div>
+                    <div class="area-summary"><span class="summary">
+                        印度尼西亚抗灾署２９日说，中苏拉威西省２８日下午发生的强烈地震及引发的海啸已经造成４８人死亡、数百人受伤，数千座房屋及一些医院、购物中心、酒店、桥梁等建筑物在地震中损毁。
+                    </span></div>
+                    <div class="part2">
+                        <a class="dig-recommend">
+                            <span class="icon"></span>
+                            <b>2</b>
+                        </a>
+                        <a class="dig-discuss">
+                            <span class="icon"></span>
+                            <b>0</b>
+                        </a>
+                        <a class="dig-collect">
+                            <span class="icon"></span>
+                            <b>私藏</b>
+                        </a>
+                        <a class="user-a">
+                            <img src="/static/imgs/CHOUTI_55D2EBBB039948AB8AEF9721F300AFD2_W48H48=32x32.jpg">
+                            <b>新华社国际咨询</b>
+                        </a>
+                        <span class="time-info"></span>
+                    </div>
+                </div>
+                <div class="item-right">
+                    <img src="/static/imgs/18D7A625DB5E4D9B8977F5B64274FADE_W600H600=C120x120.jpg">
+                </div>
+                 <div style="clear: both"></div>
+            </div>
+            <div class="item">
+                <div class="item-left">
+                    <div class="part1">
+                        <a href="#">印尼中苏拉威西省强震及海啸已造成４８人死亡
+                        </a>
+                    </div>
+                    <div class="area-summary"><span class="summary">
+                        印度尼西亚抗灾署２９日说，中苏拉威西省２８日下午发生的强烈地震及引发的海啸已经造成４８人死亡、数百人受伤，数千座房屋及一些医院、购物中心、酒店、桥梁等建筑物在地震中损毁。
+                    </span></div>
+                    <div class="part2">
+                        <a class="dig-recommend">
+                            <span class="icon"></span>
+                            <b>2</b>
+                        </a>
+                        <a class="dig-discuss">
+                            <span class="icon"></span>
+                            <b>0</b>
+                        </a>
+                        <a class="dig-collect">
+                            <span class="icon"></span>
+                            <b>私藏</b>
+                        </a>
+                        <a class="user-a">
+                            <img src="/static/imgs/CHOUTI_55D2EBBB039948AB8AEF9721F300AFD2_W48H48=32x32.jpg">
+                            <b>新华社国际咨询</b>
+                        </a>
+                        <span class="time-info"></span>
+                    </div>
+                </div>
+                <div class="item-right">
+                    <img src="/static/imgs/18D7A625DB5E4D9B8977F5B64274FADE_W600H600=C120x120.jpg">
+                </div>
+                 <div style="clear: both"></div>
+            </div>
+            <div class="item">
+                <div class="item-left">
+                    <div class="part1">
+                        <a href="#">印尼中苏拉威西省强震及海啸已造成４８人死亡
+                        </a>
+                    </div>
+                    <div class="area-summary"><span class="summary">
+                        印度尼西亚抗灾署２９日说，中苏拉威西省２８日下午发生的强烈地震及引发的海啸已经造成４８人死亡、数百人受伤，数千座房屋及一些医院、购物中心、酒店、桥梁等建筑物在地震中损毁。
+                    </span></div>
+                    <div class="part2">
+                        <a class="dig-recommend">
+                            <span class="icon"></span>
+                            <b>2</b>
+                        </a>
+                        <a class="dig-discuss">
+                            <span class="icon"></span>
+                            <b>0</b>
+                        </a>
+                        <a class="dig-collect">
+                            <span class="icon"></span>
+                            <b>私藏</b>
+                        </a>
+                        <a class="user-a">
+                            <img src="/static/imgs/CHOUTI_55D2EBBB039948AB8AEF9721F300AFD2_W48H48=32x32.jpg">
+                            <b>新华社国际咨询</b>
+                        </a>
+                        <span class="time-info"></span>
+                    </div>
+                </div>
+                <div class="item-right">
+                    <img src="/static/imgs/18D7A625DB5E4D9B8977F5B64274FADE_W600H600=C120x120.jpg">
+                </div>
+                 <div style="clear: both"></div>
+            </div>
+            <div class="item">
+                <div class="item-left">
+                    <div class="part1">
+                        <a href="#">印尼中苏拉威西省强震及海啸已造成４８人死亡
+                        </a>
+                    </div>
+                    <div class="area-summary"><span class="summary">
+                        印度尼西亚抗灾署２９日说，中苏拉威西省２８日下午发生的强烈地震及引发的海啸已经造成４８人死亡、数百人受伤，数千座房屋及一些医院、购物中心、酒店、桥梁等建筑物在地震中损毁。
+                    </span></div>
+                    <div class="part2">
+                        <a class="dig-recommend">
+                            <span class="icon"></span>
+                            <b>2</b>
+                        </a>
+                        <a class="dig-discuss">
+                            <span class="icon"></span>
+                            <b>0</b>
+                        </a>
+                        <a class="dig-collect">
+                            <span class="icon"></span>
+                            <b>私藏</b>
+                        </a>
+                        <a class="user-a">
+                            <img src="/static/imgs/CHOUTI_55D2EBBB039948AB8AEF9721F300AFD2_W48H48=32x32.jpg">
+                            <b>新华社国际咨询</b>
+                        </a>
+                        <span class="time-info"></span>
+                    </div>
+                </div>
+                <div class="item-right">
+                    <img src="/static/imgs/18D7A625DB5E4D9B8977F5B64274FADE_W600H600=C120x120.jpg">
+                </div>
+                 <div style="clear: both"></div>
+            </div>
+            <div class="item">
+                <div class="item-left">
+                    <div class="part1">
+                        <a href="#">印尼中苏拉威西省强震及海啸已造成４８人死亡
+                        </a>
+                    </div>
+                    <div class="area-summary"><span class="summary">
+                        印度尼西亚抗灾署２９日说，中苏拉威西省２８日下午发生的强烈地震及引发的海啸已经造成４８人死亡、数百人受伤，数千座房屋及一些医院、购物中心、酒店、桥梁等建筑物在地震中损毁。
+                    </span></div>
+                    <div class="part2">
+                        <a class="dig-recommend">
+                            <span class="icon"></span>
+                            <b>2</b>
+                        </a>
+                        <a class="dig-discuss">
+                            <span class="icon"></span>
+                            <b>0</b>
+                        </a>
+                        <a class="dig-collect">
+                            <span class="icon"></span>
+                            <b>私藏</b>
+                        </a>
+                        <a class="user-a">
+                            <img src="/static/imgs/CHOUTI_55D2EBBB039948AB8AEF9721F300AFD2_W48H48=32x32.jpg">
+                            <b>新华社国际咨询</b>
+                        </a>
+                        <span class="time-info"></span>
+                    </div>
+                </div>
+                <div class="item-right">
+                    <img src="/static/imgs/18D7A625DB5E4D9B8977F5B64274FADE_W600H600=C120x120.jpg">
+                </div>
+                 <div style="clear: both"></div>
+            </div>
+            <div class="item">
+                <div class="item-left">
+                    <div class="part1">
+                        <a href="#">印尼中苏拉威西省强震及海啸已造成４８人死亡
+                        </a>
+                    </div>
+                    <div class="area-summary"><span class="summary">
+                        印度尼西亚抗灾署２９日说，中苏拉威西省２８日下午发生的强烈地震及引发的海啸已经造成４８人死亡、数百人受伤，数千座房屋及一些医院、购物中心、酒店、桥梁等建筑物在地震中损毁。
+                    </span></div>
+                    <div class="part2">
+                        <a class="dig-recommend">
+                            <span class="icon"></span>
+                            <b>2</b>
+                        </a>
+                        <a class="dig-discuss">
+                            <span class="icon"></span>
+                            <b>0</b>
+                        </a>
+                        <a class="dig-collect">
+                            <span class="icon"></span>
+                            <b>私藏</b>
+                        </a>
+                        <a class="user-a">
+                            <img src="/static/imgs/CHOUTI_55D2EBBB039948AB8AEF9721F300AFD2_W48H48=32x32.jpg">
+                            <b>新华社国际咨询</b>
+                        </a>
+                        <span class="time-info"></span>
+                    </div>
+                </div>
+                <div class="item-right">
+                    <img src="/static/imgs/18D7A625DB5E4D9B8977F5B64274FADE_W600H600=C120x120.jpg">
+                </div>
+                 <div style="clear: both"></div>
+            </div>
+            <div class="item">
+                <div class="item-left">
+                    <div class="part1">
+                        <a href="#">印尼中苏拉威西省强震及海啸已造成４８人死亡
+                        </a>
+                    </div>
+                    <div class="area-summary"><span class="summary">
+                        印度尼西亚抗灾署２９日说，中苏拉威西省２８日下午发生的强烈地震及引发的海啸已经造成４８人死亡、数百人受伤，数千座房屋及一些医院、购物中心、酒店、桥梁等建筑物在地震中损毁。
+                    </span></div>
+                    <div class="part2">
+                        <a class="dig-recommend">
+                            <span class="icon"></span>
+                            <b>2</b>
+                        </a>
+                        <a class="dig-discuss">
+                            <span class="icon"></span>
+                            <b>0</b>
+                        </a>
+                        <a class="dig-collect">
+                            <span class="icon"></span>
+                            <b>私藏</b>
+                        </a>
+                        <a class="user-a">
+                            <img src="/static/imgs/CHOUTI_55D2EBBB039948AB8AEF9721F300AFD2_W48H48=32x32.jpg">
+                            <b>新华社国际咨询</b>
+                        </a>
+                        <span class="time-info"></span>
+                    </div>
+                </div>
+                <div class="item-right">
+                    <img src="/static/imgs/18D7A625DB5E4D9B8977F5B64274FADE_W600H600=C120x120.jpg">
+                </div>
+                 <div style="clear: both"></div>
+            </div>
+
+
+        </div>
+            <div id="pager-area" class="pager-area">
+                <div id="dig_lcpage">
+                    <ul>
+                        <li><a>1</a></li>
+                        <li><a>2</a></li>
+                        <li><a>3</a></li>
+                        <li><a>4</a></li>
+                        <li><a>5</a></li>
+                        <li><a>6</a></li>
+                        <li><a>7</a></li>
+                        <li><a>8</a></li>
+                        <li><a>9</a></li>
+                        <li><a>10</a></li>
+                    </ul>
+                </div>
+            </div>
+    </div>
+        <div class="info-right">
+            <div class="userDropDown">
+                <a href="#">我的新热榜</a>
+                <a href="#">我的收藏</a>
+                <a href="#">我的钱包</a>
+                <a href="#">设置</a>
+                <a href="/logout">退出</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="dig-footer"></div>
+<div class="modal hide">
+    <div class="modal-content">
+        <div class="login-band left">
+            <div class="login-head">登录</div>
+            <div class="tab-box">
+                    <span class="left-box active">手机号登录</span>|
+                    <span class="right-box">用户登录</span>
+            </div>
+            <div class="login-content">
+
+                <form id="login-fm">
+                <div class="box-mobilelogin">
+                    <div class="error-tip"></div>
+{#                    <div>#}
+{#                        {{ obj.login_region }}#}
+{#                    </div>#}
+                    <div>
+                        {{ obj.user }}
+                        <span name="user" class="tip"></span>
+                    </div>
+
+                    <div>
+                        {{ obj.pwd }}
+                        <span name="pwd" class="tip"></span>
+                    </div>
+
+                    <div>
+                        {{ obj.code }}
+                        <span name="code" class="tip"></span>
+                    </div>
+
+                    <div>
+                        <img id="check_code_img" src="/create_code" onclick="refresh_check_code(this)">
+                    </div>
+                </div>
+                <div class="help-band">
+                    <div class="remained-login">
+                        <span>
+                            <input name="keepup-login" type="checkbox">一个月内自动登录
+                        </span>
+                    </div>
+                    <div class="forgot-pwd">
+                        <a href="#">忘记密码？</a>
+                    </div>
+                </div>
+                <div class="login-btn">
+                    <input class="login-btn-in" type="button" name="login-btn" value="登录">
+                </div>
+                </form>
+            </div>
+        </div>
+        <div class="register-band right">
+            <div class="register-head">
+                <span>注册</span>
+                <div class="close-dialog-btn"></div>
+            </div>
+            <div class="tab-box-register">
+                    <span class="left-info active">1 填写手机号</span>>
+                    <span class="right-info">2 填写基本资料</span>
+                </div>
+            <div class="register-content">
+
+                    <form id="register-fm">
+                        <div>
+                            <span id="reg_summary" class="hide tip">111
+                            </span>
+                        </div>
+{#                        <div>#}
+{#                            {{ obj2.reg_region }}#}
+{#                            <select class="region">#}
+{#                                <option value="86">中国(+86)</option>#}
+{#                                <option value="852">中国香港(+852)</option>#}
+{#                                <option value="853">中国澳门(+853)</option>#}
+{#                                <option value="886">中国台湾(+886)</option>#}
+{#                                <option value="1">美国(+1)</option>#}
+{#                                <option value="1">加拿大(+1)</option>#}
+{#                                <option value="60">马来西亚(+60)</option>#}
+{#                                <option value="61">澳洲(+61)</option>#}
+{#                                <option value="81">日本(+81)</option>#}
+{#                                <option value="82">韩国(+82)</option>#}
+{#                                <option value="65">新加坡(+65)</option>#}
+{#                                <option value="44">英国(+44)</option>#}
+{#                                <option value="33">法国(+33)</option>#}
+{#                                <option value="7">俄罗斯(+7)</option>#}
+{#                                <option value="91">印度(+91)</option>#}
+{#                                <option value="66">泰国(+66)</option>#}
+{#                                <option value="49">德国(+49)</option>#}
+{#                            </select>#}
+{#                        </div>#}
+                        <div>
+                            {{ obj2.user }}
+                            <span name="user" class="tip"></span>
+                        </div>
+
+                        <div>
+{#                            <input class="register-mobile" type="text" name="username" placeholder="用户名">#}
+                            {{ obj3.email }}
+                            <input id="v-btn" class="c1 verification-btn" type="button" value="获取验证码">
+                            <span name="email" class="tip"></span>
+                        </div>
+                        <div class="help-band"><span>收不到短信？<a href="#">获取语言验证码</a></span></div>
+                        <div>
+                            {{ obj2.verification_code }}
+                            <span name="verification_code" class="tip"></span>
+                        </div>
+
+{#                        <div><input class="tb" type="text" name="verification-code" placeholder="验证码"></div>#}
+
+                        <div>
+                            {{ obj2.pwd }}
+                            <span name="pwd" class="tip"></span>
+                        </div>
+{#                        <div><input class="tb" type="password" name="pwd" placeholder="密码"></div>#}
+
+
+                <div class="btn-register">
+                    <input class="btn-reg" type="button" name="register-btn" value="注册">
+            </div>
+                    </form>
+        </div>
+        </div>
+    </div>
+</div>
+<div class="shadow hide"></div>
+<script src="/static/js/jquery-2.1.4.min.js"></script>
+<script src="/static/js/jquery.cookie.js"></script>
+<script>
+    $(function () {
+        if($.cookie("user")){
+            $(".action-nav").addClass("hide");
+            $(".login-nav").removeClass("hide");
+            $("#userProNick").text($.cookie("user"));
+        }
+    })
+    function refresh_check_code(ths) {
+        ths.src += '?';
+        //src后面加问好会自动刷新验证码img的src
+    }
+    $(".userPro-Box,.userDropDown").hover(function () {
+        $(".userDropDown").css("display","block");
+    },function () {
+        $(".userDropDown").css("display","none");
+    });
+    $(".tb").click(function () {
+        $(this).siblings().removeClass("active");
+        $(this).addClass("active");
+    })
+    $(".right-box").click(function () {
+        $(this).siblings().removeClass("active");
+        $(".box-mobilelogin select").addClass("hide");
+        $(this).addClass("active");
+    })
+    $(".left-box").click(function () {
+        $(this).siblings().removeClass("active");
+        $(".box-mobilelogin select").removeClass("hide");
+        $(this).addClass("active");
+    })
+
+    $(".login-btn-a").click(function () {
+        $(".shadow,.modal").removeClass("hide");
+    })
+    $(".close-dialog-btn").click(function () {
+        $(".shadow,.modal").addClass("hide");
+         })
+    $(".login-btn-in").click(function () {
+        if($("#login_code").val().trim().length==0){
+            $("#login-fm span[name='code']").text("请输入验证码");
+        }
+        $("#login-fm span.tip").text('');
+        $.ajax({
+           url:"/login.html",
+                headers:{'X-CSRFToken':$.cookie('csrftoken')},
+                type:"POST",
+                dataType:"JSON",
+                data:$("#login-fm").serialize(),
+                success:function (data) {
+                    if(data.status){
+                        window.location.reload();
+                    }
+                    else{
+                        var err_obj = data["errors"]
+                        for (var i in err_obj){
+                            var error_msg = err_obj[i][0]["message"];
+                            $("#login-fm span[name='"+i+"']").text(error_msg);
+                        }
+                    }
+                }
+        })
+    })
+    $(".btn-reg").click(function () {
+        $("#register-fm span.tip").text('');
+        $.ajax({
+           url:"/register.html",
+                headers:{'X-CSRFToken':$.cookie('csrftoken')},
+                type:"POST",
+                dataType:"JSON",
+                data:$("#register-fm").serialize(),
+                success:function (data) {
+                    if(data.status){
+                        window.location.reload();
+                    }
+                    else{
+                        if(data["summary"]!=null){
+                            $("#reg_summary").text(data["summary"]).removeClass("hide");;
+                        }
+                        else if(data["errors"]!=null){
+                            var err_obj = data["errors"]
+                            for (var i in err_obj){
+                            var error_msg = err_obj[i][0]["message"];
+                            $("#register-fm span[name='"+i+"']").text(error_msg);
+                        }
+                        }
+
+                    }
+                }
+        })
+    })
+    $("#v-btn").click(function () {
+        $("#reg_summary").text("");
+        var ths = $(this);
+        var email = $("#id_email").val().trim();
+
+        if(email.length==0){
+            $("#reg_summary").text("请输入邮箱");
+            return;
+        }
+
+        $.ajax({
+           url:"/email.html",
+                headers:{'X-CSRFToken':$.cookie('csrftoken')},
+                type:"POST",
+                dataType:"JSON",
+                data:{"email":email},
+                success:function (data) {
+                    if(data.status){
+                        $("#reg_summary").addClass("hide");
+                        ths.removeClass("c1").addClass("c2").attr("disabled",true);
+                        var count = 60;
+                        var interval = setInterval(function () {
+                            count--;
+                            if(count==0){
+                                clearInterval(interval);
+                                $("#v-btn").attr("disabled",false).val("获取验证码").removeClass("c2").addClass("c1");
+                            }else{
+                                $("#v-btn").val(count+"秒");
+                            }
+                        },1000);
+                    }
+                    else{
+                        $("#reg_summary").text(data["summary"]).removeClass("hide");
+                    }
+                }
+        })
+
+    })
+    $("span.zan").click(function () {
+        var tag = document.createElement("span");
+        var fz = 15;
+        var bt = 15;
+        var lf = 15;
+        var op = 1;
+        tag.style.fontSize = fz + "px";
+        tag.style.bottom = bt + "px";
+        tag.style.left = lf + "px";
+        tag.style.opacity = op;
+        tag.style.position = "absolute";
+        tag.style.fontWeight = 500;
+        tag.style.color = "green";
+        tag.innerHTML = "+1";
+        $(this).parent().append(tag);
+        var obj = setInterval(function () {
+            fz += 1;
+            bt += 15;
+            lf += 5;
+            op -= 0.2;
+            tag.style.fontSize = fz + "px";
+            tag.style.bottom = bt + "px";
+            tag.style.left = lf + "px";
+            tag.style.opacity = op;
+            tag.style.position = "absolute";
+            tag.style.color = "green";
+            if(op<0){
+                clearInterval(obj);
+                $(tag).remove();
+            }
+        },300)
+        })
+</script>
+</body>
+</html>
