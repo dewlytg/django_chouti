@@ -6,9 +6,14 @@ class UserInfo(models.Model):
     email = models.CharField(max_length=64,unique=True)
     pwd = models.CharField(max_length=64)
     ctime = models.DateTimeField(auto_now=True)
+    user_type = models.ForeignKey(to="UserType",on_delete=models.CASCADE)
 
     class Meta:
         unique_together=("user","email")
+
+
+class UserType(models.Model):
+    name = models.CharField(max_length=32)
 
 
 class SendMsg(models.Model):

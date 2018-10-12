@@ -161,4 +161,12 @@ def logout(request):
 
 
 def test(request):
-    return render(request,"test.html")
+    # models.UserInfo.objects.create(user="admin",email="dewly_tg@163.com",pwd="123")
+    # models.UserInfo.objects.create(user="admin1",email="dewly_tg1@163.com",pwd="123",user_type_id=2)
+    # models.UserInfo.objects.create(user="admin2",email="dewly_tg2@163.com",pwd="123",user_type_id=3)
+    # models.UserInfo.objects.create(user="admin3",email="dewly_tg3@163.com",pwd="123",user_type_id=1)
+    models.UserInfo.objects.get(id=1)
+    # v = models.UserInfo.objects.all()
+    # v = models.UserInfo.objects.all().select_related("user_type")
+    v = models.UserInfo.objects.all().prefetch_related("user_type")
+    return render(request,"test.html",{"v":v})

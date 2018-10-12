@@ -15,6 +15,10 @@
 <input type="button" id="btn" value="获取验证码" />
 
 
+{% for item in v %}
+    {{ item.user }} {{ item.email }} {{ item.user_type.name }}
+{% endfor %}
+
 <script type="text/javascript" src="/static/js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript">
     $("#btn").click(function () {
